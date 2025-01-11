@@ -7,17 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:258145241027:android:e92fba02f00a2c28399f76",
+        "mobilesdk_app_id": "1:258145241027:android:f274f75350468d28399f76",
         "android_client_info": {
-          "package_name": "com.withewolf_dev.shasan"
+          "package_name": "com.withewolf_dev.sarkar"
         }
       },
       "oauth_client": [
         {
-          "client_id": "258145241027-54uee16a8ln20mtaeb2qq69vsanrs0v4.apps.googleusercontent.com",
+          "client_id": "258145241027-ilf5nt59vva84he43esjkmd8c0ldpf3s.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.withewolf_dev.shasan",
+            "package_name": "com.withewolf_dev.sarkar",
             "certificate_hash": "fef0b040d17564772be9038925a4ca3b331d9e7f"
           }
         }
