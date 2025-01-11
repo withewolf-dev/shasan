@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "bundler": "metro",
@@ -26,6 +27,7 @@
       "expo-router",
       [
         "expo-splash-screen",
+        "@react-native-google-signin/google-signin",
         {
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
