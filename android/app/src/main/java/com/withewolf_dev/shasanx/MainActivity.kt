@@ -1,4 +1,4 @@
-package com.withewolf_dev.shasan
+package com.withewolf_dev.shasanx
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

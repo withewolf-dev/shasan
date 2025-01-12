@@ -1,4 +1,4 @@
-package com.withewolf_dev.shasan
+package com.withewolf_dev.shasanx
 
 import android.app.Application
 import android.content.res.Configuration

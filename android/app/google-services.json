@@ -1,47 +1,26 @@
 {
   "project_info": {
-    "project_number": "258145241027",
-    "project_id": "clone-pop",
-    "storage_bucket": "clone-pop.appspot.com"
+    "project_number": "644534585455",
+    "project_id": "test-d21a3",
+    "storage_bucket": "test-d21a3.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:258145241027:android:e92fba02f00a2c28399f76",
+        "mobilesdk_app_id": "1:644534585455:android:afc46be2f1fffaeeaa659a",
         "android_client_info": {
-          "package_name": "com.withewolf_dev.shasan"
+          "package_name": "com.withewolf_dev.shasanx"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "258145241027-54uee16a8ln20mtaeb2qq69vsanrs0v4.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.withewolf_dev.shasan",
-            "certificate_hash": "fef0b040d17564772be9038925a4ca3b331d9e7f"
-          }
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBGE4L6LS4YUE6LjMWy8-SZbV7dS2YGg_A"
+          "current_key": "AIzaSyBXbTPGld67xgZY1zk6kEnnelqqRSbiH0I"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "258145241027-71ps9nuhncp6tocrm020djtjbrprlbdc.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "258145241027-7g8b2nv1ajtdo4ofa9o18gi3hag0td4p.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.withewolf-dev.sarkar"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
