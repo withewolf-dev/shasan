@@ -12,7 +12,20 @@
           "package_name": "com.withewolf_dev.shasanx"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "644534585455-dg1uguaoempjl8t8imbtbus0hopc9s7u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.withewolf_dev.shasanx",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "644534585455-cjlvtcgd6tvji6uv9gggflkeorl1d9dl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBXbTPGld67xgZY1zk6kEnnelqqRSbiH0I"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644534585455-cjlvtcgd6tvji6uv9gggflkeorl1d9dl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
