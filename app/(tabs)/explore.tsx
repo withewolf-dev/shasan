@@ -1,4 +1,4 @@
-import { StyleSheet, Image, Platform } from "react-native";
+import { StyleSheet, Image, Platform, TouchableOpacity } from "react-native";
 
 import { Collapsible } from "@/components/Collapsible";
 import { ExternalLink } from "@/components/ExternalLink";
@@ -11,23 +11,43 @@ import {
   isErrorWithCode,
   isSuccessResponse,
   statusCodes,
+  User,
 } from "@react-native-google-signin/google-signin";
+import { useState } from "react";
+import { SignInButton } from "@/components/SignInButton";
+import * as ExpoGoogleAuthentication from "@heartbot/expo-google-authentication";
+import { ExpoGoogleAuthenticationConfigureProps } from "@heartbot/expo-google-authentication";
 
 GoogleSignin.configure();
 
 GoogleSignin.configure({
   webClientId:
     "258145241027-jhpk3tmbhr23a6jlgpbiqbs08r8knh2t.apps.googleusercontent.com",
+  iosClientId: "YOUR_IOS_CLIENT_ID",
 });
 
+const configureProps: ExpoGoogleAuthenticationConfigureProps = {
+  webClientId:
+    "258145241027-jhpk3tmbhr23a6jlgpbiqbs08r8knh2t.apps.googleusercontent.com",
+  iOSClientId: "YOUR_IOS_CLIENT_ID",
+};
+ExpoGoogleAuthentication.configure(configureProps);
 export default function TabTwoScreen() {
+  const [userInfo, setUserInfo] = useState<User | null>(null);
+
+  const login = async () => {
+    const loginResponse = await ExpoGoogleAuthentication.login();
+    console.log(loginResponse);
+  };
+
   const signIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
       const response = await GoogleSignin.signIn();
+      console.log(response);
       if (isSuccessResponse(response)) {
         console.log(response.data);
-        // setState({ userInfo: response.data });
+        setUserInfo(response.data);
       } else {
         // sign in was cancelled by user
       }
@@ -50,6 +70,16 @@ export default function TabTwoScreen() {
       }
     }
   };
+
+  const signOut = async () => {
+    try {
+      await GoogleSignin.signOut();
+      setUserInfo(null);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
@@ -63,8 +93,34 @@ export default function TabTwoScreen() {
       }
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
+        <ThemedText type="title">{userInfo?.user?.email} asdas</ThemedText>
       </ThemedView>
+
+      <Collapsible title="Google Sign In">
+        <ThemedText>
+          Sign in with your Google account to access additional features.
+        </ThemedText>
+        {userInfo ? (
+          <>
+            <ThemedText>Welcome, {userInfo.user.name}!</ThemedText>
+            <ThemedText>Email: {userInfo.user.email}</ThemedText>
+            <TouchableOpacity
+              style={[styles.button, styles.signOutButton]}
+              onPress={signOut}
+            >
+              <ThemedText style={styles.buttonText}>Sign Out</ThemedText>
+            </TouchableOpacity>
+          </>
+        ) : (
+          <TouchableOpacity
+            style={[styles.button, styles.signOutButton]}
+            onPress={login}
+          >
+            <ThemedText style={styles.buttonText}>Sign Out</ThemedText>
+          </TouchableOpacity>
+        )}
+      </Collapsible>
+
       <ThemedText>
         This app includes example code to help you get started.
       </ThemedText>
@@ -93,8 +149,7 @@ export default function TabTwoScreen() {
       </Collapsible>
       <Collapsible title="Images">
         <ThemedText>
-          For static images, you can use the{" "}
-          <ThemedText type="defaultSemiBold">@2x</ThemedText> and{" "}
+          For signine <ThemedText type="defaultSemiBold">@2x</ThemedText> and{" "}
           <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to
           provide files for different screen densities
         </ThemedText>
@@ -167,5 +222,20 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: "row",
     gap: 8,
+  },
+  button: {
+    padding: 16,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 8,
+  },
+  signOutButton: {
+    backgroundColor: "#dc3545",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "600",
   },
 });
