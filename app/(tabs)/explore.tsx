@@ -22,13 +22,13 @@ GoogleSignin.configure();
 
 GoogleSignin.configure({
   webClientId:
-    "258145241027-jhpk3tmbhr23a6jlgpbiqbs08r8knh2t.apps.googleusercontent.com",
+    "644534585455-cjlvtcgd6tvji6uv9gggflkeorl1d9dl.apps.googleusercontent.com",
   iosClientId: "YOUR_IOS_CLIENT_ID",
 });
 
 const configureProps: ExpoGoogleAuthenticationConfigureProps = {
   webClientId:
-    "258145241027-jhpk3tmbhr23a6jlgpbiqbs08r8knh2t.apps.googleusercontent.com",
+    "644534585455-cjlvtcgd6tvji6uv9gggflkeorl1d9dl.apps.googleusercontent.com",
   iOSClientId: "YOUR_IOS_CLIENT_ID",
 };
 ExpoGoogleAuthentication.configure(configureProps);
@@ -112,12 +112,7 @@ export default function TabTwoScreen() {
             </TouchableOpacity>
           </>
         ) : (
-          <TouchableOpacity
-            style={[styles.button, styles.signOutButton]}
-            onPress={login}
-          >
-            <ThemedText style={styles.buttonText}>Sign Out</ThemedText>
-          </TouchableOpacity>
+          <SignInButton onSignInSuccess={setUserInfo} />
         )}
       </Collapsible>
 

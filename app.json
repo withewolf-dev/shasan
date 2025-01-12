@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.withewolf-dev.shasan"
+      "bundleIdentifier": "com.withewolf-dev.shasanx"
     },
     "android": {
       "adaptiveIcon": {
@@ -18,7 +18,7 @@
         "backgroundColor": "#ffffff"
       },
       "googleServicesFile": "./google-services.json",
-      "package": "com.withewolf_dev.shasan"
+      "package": "com.withewolf_dev.shasanx"
     },
     "web": {
       "bundler": "metro",
@@ -37,9 +37,17 @@
         }
       ],
       "@react-native-google-signin/google-signin"
-    ],
+    ], 
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "a3b55219-cddd-41b3-be8e-be05ed24b37e"
+      }
     }
   }
 }
