@@ -1,84 +1,15 @@
-import { StyleSheet, Image, Platform, TouchableOpacity } from "react-native";
-
+import { StyleSheet, Image, Platform } from "react-native";
 import { Collapsible } from "@/components/Collapsible";
 import { ExternalLink } from "@/components/ExternalLink";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { IconSymbol } from "@/components/ui/IconSymbol";
-import {
-  GoogleSignin,
-  isErrorWithCode,
-  isSuccessResponse,
-  statusCodes,
-  User,
-} from "@react-native-google-signin/google-signin";
-import { useState } from "react";
+import { useAuth } from "@/context/auth";
 import { SignInButton } from "@/components/SignInButton";
-import * as ExpoGoogleAuthentication from "@heartbot/expo-google-authentication";
-import { ExpoGoogleAuthenticationConfigureProps } from "@heartbot/expo-google-authentication";
 
-GoogleSignin.configure();
-
-GoogleSignin.configure({
-  webClientId:
-    "644534585455-cjlvtcgd6tvji6uv9gggflkeorl1d9dl.apps.googleusercontent.com",
-  iosClientId: "YOUR_IOS_CLIENT_ID",
-});
-
-const configureProps: ExpoGoogleAuthenticationConfigureProps = {
-  webClientId:
-    "644534585455-cjlvtcgd6tvji6uv9gggflkeorl1d9dl.apps.googleusercontent.com",
-  iOSClientId: "YOUR_IOS_CLIENT_ID",
-};
-ExpoGoogleAuthentication.configure(configureProps);
 export default function TabTwoScreen() {
-  const [userInfo, setUserInfo] = useState<User | null>(null);
-
-  const login = async () => {
-    const loginResponse = await ExpoGoogleAuthentication.login();
-    console.log(loginResponse);
-  };
-
-  const signIn = async () => {
-    try {
-      await GoogleSignin.hasPlayServices();
-      const response = await GoogleSignin.signIn();
-      console.log(response);
-      if (isSuccessResponse(response)) {
-        console.log(response.data);
-        setUserInfo(response.data);
-      } else {
-        // sign in was cancelled by user
-      }
-    } catch (error) {
-      if (isErrorWithCode(error)) {
-        switch (error.code) {
-          case statusCodes.IN_PROGRESS:
-            // operation (eg. sign in) already in progress
-            console.log("IN_PROGRESS");
-            break;
-          case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
-            // Android only, play services not available or outdated
-            console.log("PLAY_SERVICES_NOT_AVAILABLE");
-            break;
-          default:
-          // some other error happened
-        }
-      } else {
-        // an error that's not related to google sign in occurred
-      }
-    }
-  };
-
-  const signOut = async () => {
-    try {
-      await GoogleSignin.signOut();
-      setUserInfo(null);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { user, signIn, signOut } = useAuth();
 
   return (
     <ParallaxScrollView
@@ -93,26 +24,20 @@ export default function TabTwoScreen() {
       }
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">{userInfo?.user?.email} asdas</ThemedText>
+        <ThemedText type="title">Welcome {user?.user?.name}</ThemedText>
       </ThemedView>
 
       <Collapsible title="Google Sign In">
         <ThemedText>
           Sign in with your Google account to access additional features.
         </ThemedText>
-        {userInfo ? (
+        {user ? (
           <>
-            <ThemedText>Welcome, {userInfo.user.name}!</ThemedText>
-            <ThemedText>Email: {userInfo.user.email}</ThemedText>
-            <TouchableOpacity
-              style={[styles.button, styles.signOutButton]}
-              onPress={signOut}
-            >
-              <ThemedText style={styles.buttonText}>Sign Out</ThemedText>
-            </TouchableOpacity>
+            <ThemedText>Welcome, {user.user.name}!</ThemedText>
+            <ThemedText>Email: {user.user.email}</ThemedText>
           </>
         ) : (
-          <SignInButton onSignInSuccess={setUserInfo} />
+          <SignInButton onSignInSuccess={signIn} />
         )}
       </Collapsible>
 
